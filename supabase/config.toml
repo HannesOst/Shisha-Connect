@@ -1,0 +1,11 @@
+# Minimal Supabase CLI config. `supabase link --project-ref <ref>` connects it to your hosted project.
+project_id = "shisha-connect"
+
+# The function validates the caller's session itself (auth.getUser), so it works with
+# legacy JWT keys as well as the newer publishable/secret keys.
+[functions.notify]
+verify_jwt = false
+
+# Called by pg_cron with the CRON_SECRET instead of a user token.
+[functions.send-reminders]
+verify_jwt = false
