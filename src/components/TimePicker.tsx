@@ -70,7 +70,9 @@ function QuickButton({
 }) {
   return (
     <Pressable onPress={onPress} style={[styles.quick, selected && { borderColor: colors.accent, backgroundColor: colors.accentSoft }]}>
-      <Ionicons name={icon} size={28} color={colors.accent} />
+      <View style={styles.quickIcon}>
+        <Ionicons name={icon} size={24} color={colors.accent} />
+      </View>
       <Text style={styles.quickTitle}>{title}</Text>
       <Text style={font.small}>{subtitle}</Text>
     </Pressable>
@@ -85,16 +87,17 @@ const styles = StyleSheet.create({
     gap: 4,
     padding: spacing.lg,
     borderRadius: radius.lg,
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: colors.border,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.glass,
   },
+  quickIcon: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.accentSoft, alignItems: 'center', justifyContent: 'center', marginBottom: 4 },
   quickTitle: { color: colors.text, fontSize: 18, fontWeight: '800' },
   selectedRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.glass,
     padding: spacing.md,
     borderRadius: radius.md,
   },

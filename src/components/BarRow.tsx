@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.glass,
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,

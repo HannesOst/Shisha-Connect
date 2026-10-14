@@ -4,7 +4,7 @@ import { RefreshControl, Text, View } from 'react-native';
 import { BarMap } from '@/components/BarMap';
 import { BarRow } from '@/components/BarRow';
 import { LocationControls } from '@/components/LocationControls';
-import { Button, Card, Chip, EmptyState, Screen, SectionTitle } from '@/components/ui';
+import { Button, Card, EmptyState, Screen, SectionTitle, Segmented } from '@/components/ui';
 import { colors, font, spacing } from '@/lib/theme';
 import type { BarCandidate } from '@/lib/types';
 import { useBarSearch } from '@/providers/BarSearchProvider';
@@ -45,10 +45,14 @@ export default function BarsScreen() {
       <Text style={font.title}>Bars</Text>
       <LocationControls />
 
-      <View style={{ flexDirection: 'row', gap: spacing.sm }}>
-        <Chip icon="list" label="Liste" selected={view === 'list'} onPress={() => setView('list')} />
-        <Chip icon="map" label="Karte" selected={view === 'map'} onPress={() => setView('map')} />
-      </View>
+      <Segmented
+        options={[
+          { value: 'list', label: 'Liste', icon: 'list' },
+          { value: 'map', label: 'Karte', icon: 'map' },
+        ]}
+        value={view}
+        onChange={setView}
+      />
 
       {view === 'map' && (
         <BarMap bars={[...results, ...favorites.filter((f) => !results.some((r) => r.key === f.key))]} origin={origin} radiusKm={radiusKm} activeKey={activeKey} onSelect={setActiveKey} height={360} />

@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "backgroundColor": "#14100D",
+    "backgroundColor": "#141517",
     "ios": {
       "bundleIdentifier": "ch.shishaconnect.app",
       "supportsTablet": false,
@@ -18,7 +18,7 @@
     "android": {
       "package": "ch.shishaconnect.app",
       "adaptiveIcon": {
-        "backgroundColor": "#14100D",
+        "backgroundColor": "#141517",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -44,14 +44,14 @@
         {
           "image": "./assets/splash-icon.png",
           "imageWidth": 160,
-          "backgroundColor": "#14100D"
+          "backgroundColor": "#141517"
         }
       ],
       "expo-image",
       [
         "expo-notifications",
         {
-          "color": "#FF8A3D",
+          "color": "#F2541B",
           "defaultChannel": "meetups"
         }
       ],

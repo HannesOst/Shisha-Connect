@@ -1,9 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { RADIUS_OPTIONS, useBarSearch } from '@/providers/BarSearchProvider';
 import { colors, font, radius, spacing } from '@/lib/theme';
-import { Chip, Notice } from './ui';
+import { Notice, Segmented } from './ui';
 
 /** Location (GPS or typed place) + radius selection for the bar search. */
 export function LocationControls() {
@@ -27,15 +27,11 @@ export function LocationControls() {
           {loading && <ActivityIndicator color={colors.accent} />}
         </View>
         <Pressable style={styles.gpsButton} onPress={locateMe} accessibilityLabel="Meinen Standort verwenden">
-          <Ionicons name="locate" size={24} color={colors.onAccent} />
+          <Ionicons name="locate" size={22} color={colors.accent} />
         </Pressable>
       </View>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: spacing.sm }}>
-        {RADIUS_OPTIONS.map((km) => (
-          <Chip key={km} label={`${km} km`} selected={radiusKm === km} onPress={() => setRadiusKm(km)} />
-        ))}
-      </ScrollView>
+      <Segmented options={RADIUS_OPTIONS.map((km) => ({ value: km, label: `${km} km` }))} value={radiusKm} onChange={setRadiusKm} />
 
       {!origin && (
         <Notice icon="location">
@@ -66,17 +62,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
+    backgroundColor: colors.glass,
+    borderRadius: radius.pill,
     borderWidth: 1,
     borderColor: colors.border,
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.lg,
   },
   searchInput: { flex: 1, color: colors.text, fontSize: 16, paddingVertical: 14 },
   gpsButton: {
-    width: 54,
-    borderRadius: radius.md,
-    backgroundColor: colors.accent,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: colors.glass,
+    borderWidth: 1,
+    borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
   },

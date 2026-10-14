@@ -153,7 +153,11 @@ function ToggleRow({ title, text, value, onChange }: { title: string; text: stri
         <Text style={[font.body, { fontWeight: '700' }]}>{title}</Text>
         <Text style={font.small}>{text}</Text>
       </View>
-      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.accent, false: colors.border }} />
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.accent, false: colors.glassStrong }}
+          thumbColor="#FFFFFF"
+          // react-native-web uses a separate prop for the "on" thumb
+          {...({ activeThumbColor: '#FFFFFF' } as object)}
+          ios_backgroundColor={colors.glassStrong} />
     </View>
   );
 }

@@ -1,10 +1,9 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { RefreshControl, StyleSheet, Text, View } from 'react-native';
 import { MeetupCard } from '@/components/MeetupCard';
 import { PushBanner } from '@/components/PushBanner';
-import { Button, EmptyState, Screen, SectionTitle } from '@/components/ui';
+import { Button, EmptyState, IconButton, Screen, SectionTitle } from '@/components/ui';
 import { useRealtime } from '@/hooks/useRealtime';
 import { useUnreadCount } from '@/hooks/useUnreadCount';
 import { fetchUpcomingMeetups } from '@/lib/api';
@@ -67,14 +66,13 @@ export default function HomeScreen() {
           <Text style={font.muted}>Hallo {profile?.display_name ?? ''} 👋</Text>
           <Text style={font.title}>Treffen</Text>
         </View>
-        <Pressable onPress={() => router.push('/notifications')} style={styles.bell} accessibilityLabel="Mitteilungen">
-          <Ionicons name="notifications-outline" size={26} color={colors.text} />
+        <IconButton icon="notifications-outline" label="Mitteilungen" onPress={() => router.push('/notifications')}>
           {unread > 0 && (
             <View style={styles.badge}>
               <Text style={styles.badgeText}>{unread > 9 ? '9+' : unread}</Text>
             </View>
           )}
-        </Pressable>
+        </IconButton>
       </View>
 
       <PushBanner />
@@ -115,11 +113,10 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center' },
-  bell: { padding: spacing.sm },
   badge: {
     position: 'absolute',
-    top: 2,
-    right: 2,
+    top: -4,
+    right: -4,
     minWidth: 20,
     height: 20,
     borderRadius: radius.pill,

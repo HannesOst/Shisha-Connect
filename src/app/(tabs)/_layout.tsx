@@ -39,8 +39,8 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textFaint,
-        tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border, height: 64, paddingTop: 6 },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '700' },
+        tabBarStyle: { backgroundColor: '#1A1B1E', borderTopColor: colors.border, height: 66, paddingTop: 8 },
+        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
       }}
     >
       <Tabs.Screen

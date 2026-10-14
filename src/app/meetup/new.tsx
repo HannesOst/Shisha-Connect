@@ -75,7 +75,7 @@ export default function NewMeetupScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={['bottom']}>
       <View style={styles.steps}>
         {STEPS.map((label, i) => (
-          <View key={label} style={[styles.step, i <= step && { backgroundColor: colors.accent }]}>
+          <View key={label} style={[styles.step, i <= step && { backgroundColor: colors.accent, borderColor: colors.accent }]}>
             <Text style={[styles.stepText, i <= step && { color: colors.onAccent }]}>
               {i + 1}. {label}
             </Text>
@@ -91,7 +91,11 @@ export default function NewMeetupScreen() {
                   <Text style={[font.body, { fontWeight: '700' }]}>Abstimmung</Text>
                   <Text style={font.small}>Mehrere Bars oder Uhrzeiten vorschlagen – du entscheidest danach.</Text>
                 </View>
-                <Switch value={voting} onValueChange={setVotingMode} trackColor={{ true: colors.accent, false: colors.border }} />
+                <Switch value={voting} onValueChange={setVotingMode} trackColor={{ true: colors.accent, false: colors.glassStrong }}
+          thumbColor="#FFFFFF"
+          // react-native-web uses a separate prop for the "on" thumb
+          {...({ activeThumbColor: '#FFFFFF' } as object)}
+          ios_backgroundColor={colors.glassStrong} />
               </View>
               <BarPicker selected={bars} onToggle={toggleBar} />
             </>
@@ -146,9 +150,9 @@ export default function NewMeetupScreen() {
         </ScrollView>
       </KeyboardAvoidingView>
       <View style={styles.footer}>
-        {step > 0 && <Button title="Zurück" variant="secondary" onPress={() => setStep(step - 1)} style={{ flex: 1 }} />}
+        {step > 0 && <Button title="Zurück" variant="secondary" onPress={() => setStep(step - 1)} style={{ paddingHorizontal: spacing.lg }} />}
         {step < 2 ? (
-          <Button title="Weiter" icon="arrow-forward" onPress={() => setStep(step + 1)} disabled={!canContinue} style={{ flex: 2 }} />
+          <Button title="Weiter" icon="arrow-forward" onPress={() => setStep(step + 1)} disabled={!canContinue} style={{ flex: 1 }} />
         ) : (
           <Button
             title={isVote ? 'Abstimmung starten' : 'Freunde einladen'}
@@ -156,7 +160,7 @@ export default function NewMeetupScreen() {
             onPress={publish}
             loading={busy}
             disabled={!canContinue}
-            style={{ flex: 2 }}
+            style={{ flex: 1 }}
           />
         )}
       </View>
@@ -166,16 +170,16 @@ export default function NewMeetupScreen() {
 
 const styles = StyleSheet.create({
   steps: { flexDirection: 'row', gap: spacing.sm, paddingHorizontal: spacing.lg, paddingTop: spacing.md },
-  step: { flex: 1, paddingVertical: 8, borderRadius: radius.pill, backgroundColor: colors.surfaceAlt, alignItems: 'center' },
+  step: { flex: 1, paddingVertical: 9, borderRadius: radius.pill, backgroundColor: colors.glass, borderWidth: 1, borderColor: colors.border, alignItems: 'center' },
   stepText: { color: colors.textMuted, fontWeight: '700', fontSize: 13 },
   content: { padding: spacing.lg, gap: spacing.lg, paddingBottom: spacing.xxl },
   switchRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
-    backgroundColor: colors.surface,
-    padding: spacing.md,
-    borderRadius: radius.md,
+    backgroundColor: colors.glass,
+    padding: spacing.lg,
+    borderRadius: radius.lg,
     borderWidth: 1,
     borderColor: colors.border,
   },
