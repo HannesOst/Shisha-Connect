@@ -73,7 +73,7 @@ npm install
 2. Datenbank-Schema einspielen, **entweder**
    - im Dashboard unter *SQL Editor* den Inhalt von `supabase/migrations/20261014000000_init.sql` einfügen und ausführen, **oder**
    - per CLI: `npx supabase login`, `npx supabase link --project-ref <PROJECT_REF>`, `npx supabase db push`.
-3. *Authentication → Sign In / Providers → Email*: aktiviert lassen. Für den Start mit Freunden kannst du **„Confirm email“ ausschalten**, dann ist man direkt nach der Registrierung angemeldet. Lässt du es an, muss jede Person zuerst den Link in der Bestätigungs-E-Mail antippen.
+3. *Authentication → Sign In / Providers → Email*: aktiviert lassen und **„Confirm email“ ausschalten**. Dann ist man direkt nach der Registrierung angemeldet, ohne Bestätigungs-E-Mail. (Die App unterstützt auch den Modus mit Bestätigung, falls du das später änderst.)
 4. `.env` anlegen (Werte unter *Project Settings → API*):
    ```bash
    cp .env.example .env
@@ -103,7 +103,7 @@ npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_URL --value https://<P
 npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value <KEY> --environment development --environment preview --environment production --visibility plaintext
 ```
 
-### 3. Push für Android (Firebase Cloud Messaging)
+### 3. Push für Android (Firebase Cloud Messaging) – nur nötig, wenn jemand ein Android-Handy hat
 
 1. In der [Firebase Console](https://console.firebase.google.com) ein Projekt anlegen → *Android-App hinzufügen* mit Paketname **`ch.shishaconnect.app`**.
 2. `google-services.json` herunterladen und in den Projektordner legen (wird nicht ins Git eingecheckt). Für Cloud-Builds zusätzlich als Datei-Variable hinterlegen:
@@ -120,8 +120,8 @@ npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value <KEY>
 
 | Ziel | Befehl | Installation |
 |---|---|---|
-| **Android für Freunde** | `npx eas-cli@latest build --profile preview --platform android` | Link/QR-Code aus EAS öffnen → APK installieren („Installation aus unbekannten Quellen“ erlauben) |
-| **iPhone für Freunde** (empfohlen) | `npx eas-cli@latest build --profile production --platform ios` und danach `npx eas-cli@latest submit --platform ios` | In App Store Connect die Freunde als TestFlight-Tester einladen → App „TestFlight“ installieren → Shisha Connect installieren |
+| **iPhone für Freunde** (empfohlen) | `npx eas-cli@latest build --profile production --platform ios` und danach `npx eas-cli@latest submit --platform ios` | In [App Store Connect](https://appstoreconnect.apple.com) unter *TestFlight* die Freunde per E-Mail als Tester einladen → sie installieren die App „TestFlight“ aus dem App Store → darüber Shisha Connect installieren. Neue Versionen erscheinen dort automatisch. |
+| Android für Freunde | `npx eas-cli@latest build --profile preview --platform android` | Link/QR-Code aus EAS öffnen → APK installieren („Installation aus unbekannten Quellen“ erlauben) |
 | iPhone ohne TestFlight | `npx eas-cli@latest device:create` (jedes iPhone registrieren), dann `build --profile preview --platform ios` | Link aus EAS öffnen (nur registrierte Geräte) |
 | Entwicklung | `npx eas-cli@latest build --profile development --platform android` (bzw. ios), dann `npx expo start` | Development-Build installieren, Code lädt live vom Computer |
 
