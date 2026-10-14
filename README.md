@@ -158,7 +158,10 @@ npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value <KEY>
 npm run typecheck     # TypeScript
 npm run lint          # ESLint (Expo-Konfiguration)
 npx expo start        # Dev-Server (mit installiertem Development-Build)
+npx expo start --web  # Schnelle Vorschau der Oberfläche im Browser (ohne Push-Nachrichten)
 ```
+
+Die Browser-Vorschau braucht ebenfalls die `.env` mit den Supabase-Werten. Push, Erinnerungen und Standort-Feinheiten gibt es nur in der echten App.
 
 ## Bekannte Grenzen / mögliche nächste Schritte
 

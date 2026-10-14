@@ -48,6 +48,9 @@ function projectId(): string | undefined {
  * fetches the Expo push token and stores it for the signed in user.
  */
 export async function registerForPush(ask: boolean): Promise<RegisterResult> {
+  if (Platform.OS === 'web') {
+    return { ok: false, reason: 'simulator', message: 'Push-Nachrichten gibt es nur in der iPhone-/Android-App.' };
+  }
   try {
     await ensureAndroidChannel();
     let status = await getPushPermission();

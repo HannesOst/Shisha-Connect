@@ -88,7 +88,7 @@ export default function GroupScreen() {
         <Button title="Freunde einladen" icon="share-social" onPress={share} />
         <View style={{ flexDirection: 'row', gap: spacing.sm }}>
           <Button
-            title="Code kopieren"
+            title="Kopieren"
             icon="copy-outline"
             variant="secondary"
             small
@@ -98,7 +98,7 @@ export default function GroupScreen() {
               Alert.alert('Kopiert', 'Der Gruppencode ist in der Zwischenablage.');
             }}
           />
-          {isAdmin && <Button title="Code erneuern" icon="refresh" variant="secondary" small style={{ flex: 1 }} onPress={renew} />}
+          {isAdmin && <Button title="Neuer Code" icon="refresh" variant="secondary" small style={{ flex: 1 }} onPress={renew} />}
         </View>
       </Card>
 

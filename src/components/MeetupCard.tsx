@@ -24,7 +24,7 @@ export function MeetupCard({ meetup, userId, showGroup }: { meetup: Meetup; user
             {showGroup && meetup.group ? ` · ${meetup.group.name}` : ''}
           </Text>
           <Text style={styles.title} numberOfLines={1}>
-            {voting ? 'Abstimmung: Wann & wo?' : meetup.bar?.name ?? 'Bar'}
+            {voting ? 'Wann & wo?' : meetup.bar?.name ?? 'Bar'}
           </Text>
         </View>
         {cancelled && <Badge label="Abgesagt" color={colors.no} />}

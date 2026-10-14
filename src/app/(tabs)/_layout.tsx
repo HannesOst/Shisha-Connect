@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Notifications from 'expo-notifications';
 import { router, Tabs } from 'expo-router';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { registerForPush } from '@/lib/push';
 import { colors } from '@/lib/theme';
 
@@ -18,6 +19,8 @@ export default function TabsLayout() {
 
   // Tapping a push notification opens the matching meetup – also when the app was closed.
   useEffect(() => {
+    // Push only exists on iOS/Android (the web build is just a preview).
+    if (Platform.OS === 'web') return;
     const last = Notifications.getLastNotificationResponse();
     if (last) {
       Notifications.clearLastNotificationResponse();
