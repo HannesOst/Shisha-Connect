@@ -95,7 +95,7 @@ npm install
 npx eas-cli@latest login
 npx eas-cli@latest init          # legt das Expo-Projekt an und gibt die projectId aus
 ```
-Die angezeigte `projectId` in `.env` als `EAS_PROJECT_ID=` eintragen (oder in `app.json` unter `extra.eas.projectId`). Ohne sie kann die App keinen Push-Token abrufen.
+Die angezeigte `projectId` in `app.json` unter `extra.eas.projectId` eintragen (die `.env` wird nicht mit in den Cloud-Build hochgeladen). Ohne sie kann die App keinen Push-Token abrufen.
 
 Die Supabase-Werte müssen auch beim Cloud-Build bekannt sein:
 ```bash
